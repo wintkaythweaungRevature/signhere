@@ -1,0 +1,27 @@
+{
+  "name": "eSignly – eSignature Widget",
+  "short_name": "eSignly",
+  "description": "Draw, save, and embed your eSignature anywhere.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f0f0ff",
+  "theme_color": "#6c63ff",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "categories": ["productivity", "utilities"],
+  "lang": "en"
+}
