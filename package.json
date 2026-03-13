@@ -1,0 +1,15 @@
+{
+  "name": "esignly",
+  "version": "1.0.0",
+  "description": "Draw, save, and embed eSignatures anywhere — on any website or PDF.",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-canvas-mock": "^2.5.2",
+    "jest-environment-jsdom": "^29.7.0"
+  }
+}
