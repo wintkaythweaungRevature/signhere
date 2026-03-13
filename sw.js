@@ -3,12 +3,13 @@
  * Enables offline support and PWA installation
  */
 
-var CACHE_NAME = 'esignly-v1';
+var CACHE_NAME = 'esignly-v2';
 var ASSETS = [
   '/',
   '/index.html',
   '/widget.js',
   '/widget.css',
+  '/pdf-signer.js',
   '/manifest.json',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
