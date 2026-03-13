@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#6c63ff" />
+  <meta name="description" content="eSignly – Save and embed your eSignature anywhere." />
+  <title>eSignly – eSignature Widget</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icons/icon-192.png" type="image/png" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="widget.css" />
+</head>
+<body>
+  <div class="esignly-page">
+    <header class="esignly-header">
+      <div class="esignly-logo">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="#6c63ff"/>
+          <path d="M7 22 Q12 10 17 18 Q20 24 25 10" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <circle cx="25" cy="10" r="2" fill="#fff"/>
+        </svg>
+        <span>eSignly</span>
+      </div>
+      <p class="esignly-tagline">Sign once. Use everywhere.</p>
+    </header>
+
+    <main>
+      <!-- The widget renders itself here via widget.js -->
+      <div id="esignly-widget"></div>
+    </main>
+
+    <section class="esignly-embed-section">
+      <h2>Embed on your website</h2>
+      <p>Copy and paste this snippet into your HTML:</p>
+      <div class="code-block">
+        <pre><code id="embed-code">&lt;div id="esignly-widget"&gt;&lt;/div&gt;
+&lt;link rel="stylesheet" href="https://yourdomain.com/widget.css"&gt;
+&lt;script src="https://yourdomain.com/widget.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  ESignly.init({ target: '#esignly-widget' });
+&lt;/script&gt;</code></pre>
+        <button class="copy-btn" onclick="copyEmbed()">Copy</button>
+      </div>
+    </section>
+
+    <footer class="esignly-footer">
+      <p>MIT License &copy; 2026 eSignly</p>
+    </footer>
+  </div>
+
+  <script src="widget.js"></script>
+  <script>
+    // Auto-init on the demo page
+    ESignly.init({ target: '#esignly-widget' });
+
+    // Register PWA service worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+
+    function copyEmbed() {
+      const code = document.getElementById('embed-code').textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy', 2000);
+      });
+    }
+  </script>
+</body>
+</html>
