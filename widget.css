@@ -375,6 +375,302 @@ body {
   font-size: 0.8rem;
 }
 
+/* ============================================
+   Tabs
+   ============================================ */
+.esignly-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  background: #fff;
+  border-radius: 10px;
+  padding: 0.35rem;
+  box-shadow: 0 1px 6px rgba(108,99,255,0.08);
+  border: 1px solid var(--esignly-border);
+}
+
+.esignly-tab {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--esignly-muted);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.esignly-tab:hover { background: #f1f5f9; color: var(--esignly-text); }
+
+.esignly-tab.active {
+  background: var(--esignly-primary);
+  color: #fff;
+}
+
+.esignly-tab-panel { display: none; }
+.esignly-tab-panel.active { display: block; }
+
+/* ============================================
+   PDF Signer  (.esignly-pdf-signer / .eps-*)
+   ============================================ */
+.esignly-pdf-signer {
+  background: var(--esignly-surface);
+  border-radius: var(--esignly-radius);
+  box-shadow: var(--esignly-shadow);
+  border: 1px solid var(--esignly-border);
+  overflow: hidden;
+}
+
+/* Upload area */
+.eps-upload-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 3rem 1.5rem;
+  cursor: pointer;
+  text-align: center;
+  border: 2px dashed var(--esignly-border);
+  border-radius: var(--esignly-radius);
+  margin: 1rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.eps-upload-area:hover,
+.eps-upload-area.drag-over {
+  border-color: var(--esignly-primary);
+  background: #f5f4ff;
+}
+
+.eps-upload-area p {
+  font-size: 0.95rem;
+  color: var(--esignly-text);
+}
+
+.eps-file-label {
+  color: var(--esignly-primary);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.eps-file-input { display: none; }
+
+.eps-upload-hint {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+/* Viewer */
+.eps-viewer { display: flex; flex-direction: column; }
+
+/* Toolbar */
+.eps-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--esignly-border);
+  background: #fafafe;
+  flex-wrap: wrap;
+}
+
+.eps-page-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-right: auto;
+}
+
+.eps-page-info {
+  font-size: 0.85rem;
+  color: var(--esignly-muted);
+  white-space: nowrap;
+}
+
+.eps-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.875rem;
+  border-radius: 7px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s, opacity 0.15s;
+}
+
+.eps-btn:active { transform: scale(0.96); }
+.eps-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.eps-btn-ghost {
+  background: transparent;
+  color: var(--esignly-muted);
+  border: 1px solid var(--esignly-border);
+}
+.eps-btn-ghost:hover:not(:disabled) { background: #f1f5f9; }
+
+.eps-btn-primary {
+  background: var(--esignly-primary);
+  color: #fff;
+}
+.eps-btn-primary:hover:not(:disabled) { background: var(--esignly-primary-dark); }
+
+/* Canvas + overlay */
+.eps-canvas-wrap {
+  position: relative;
+  background: #e2e8f0;
+  overflow: auto;
+  max-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.eps-canvas {
+  display: block;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+
+.eps-overlay {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.eps-overlay.placing {
+  pointer-events: all;
+  cursor: crosshair;
+}
+
+/* Placed signature element */
+.eps-placement {
+  position: absolute;
+  border: 1.5px dashed var(--esignly-primary);
+  border-radius: 4px;
+  cursor: move;
+  pointer-events: all;
+  box-sizing: border-box;
+  background: rgba(255,255,255,0.15);
+}
+
+.eps-placement img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+.eps-placement-delete {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  font-size: 10px;
+  line-height: 20px;
+  text-align: center;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+.eps-resize-handle {
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  width: 14px;
+  height: 14px;
+  background: var(--esignly-primary);
+  border: 2px solid #fff;
+  border-radius: 3px;
+  cursor: se-resize;
+  z-index: 10;
+}
+
+/* Signature selector */
+.eps-sig-selector {
+  padding: 1rem;
+  border-top: 1px solid var(--esignly-border);
+  background: #fafafe;
+}
+
+.eps-sig-selector-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--esignly-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.75rem;
+}
+
+.eps-sig-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.eps-sig-item {
+  border: 2px solid var(--esignly-border);
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.1s;
+}
+
+.eps-sig-item:hover {
+  border-color: var(--esignly-primary);
+  box-shadow: 0 0 0 3px rgba(108,99,255,0.12);
+}
+
+.eps-sig-item.active {
+  border-color: var(--esignly-primary);
+  box-shadow: 0 0 0 3px rgba(108,99,255,0.2);
+  transform: scale(1.04);
+}
+
+.eps-sig-item img {
+  display: block;
+  width: 130px;
+  height: 56px;
+  object-fit: contain;
+  padding: 4px;
+}
+
+.eps-sig-empty {
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 480px) {
+  .eps-toolbar { gap: 0.35rem; }
+  .eps-btn { padding: 0.4rem 0.65rem; font-size: 0.78rem; }
+  .eps-sig-item img { width: 100px; height: 44px; }
+}
+
 /* ---- Responsive ---- */
 @media (max-width: 480px) {
   .esignly-page { padding: 1rem 0.75rem 3rem; }
